@@ -1,37 +1,38 @@
 <form [formGroup]="itemForm">
   <div class="wrapper">
     <h3>Add an Item</h3>
+    <div #message></div>
     <div class="name">
-      <ion-input type="text" placeholder="Item Name" formControlName="name"></ion-input>
-      <div class="error" *ngIf="name?.invalid && name?.touched">
+      <ion-input type="text" placeholder="Item Name" formControlName="item_name" #Name></ion-input>
+      <div class="error" *ngIf="item_name?.invalid && item_name?.touched">
         <small>Enter name of item</small>
       </div>
     </div>
     <div class="category">
-      <ion-select  formControlName="category" placeholder="Select Category">
+      <ion-select  formControlName="categoryID" placeholder="Select Category" #Category>
         <ion-select-option value="">--Category--</ion-select-option>
-        <ion-select-option value="fruit">Fruit</ion-select-option>
-        <ion-select-option value="staple">Staple</ion-select-option>
-        <ion-select-option value="protein">Protein</ion-select-option>
+        <ion-select-option value="Fruit">Fruit</ion-select-option>
+        <ion-select-option value="Staple">Staple</ion-select-option>
+        <ion-select-option value="Protein">Protein</ion-select-option>
       </ion-select>
-      <div class="error" *ngIf="category.value == '' && category?.touched">
+      <div class="error" *ngIf="categoryID.value == '' && categoryID?.touched">
         <small>Select a category</small>
       </div>
     </div>
     <div class="price">
-      <ion-input type="number" placeholder="Cost" formControlName="price"></ion-input>
+      <ion-input type="number" placeholder="Cost" formControlName="price" #Price></ion-input>
       <div class="error" *ngIf="price?.invalid && price?.touched">
         <small>Enter price of item</small>
       </div>
     </div>
     <div class="quantity">
-      <ion-input type="number" placeholder="Quantity" formControlName="quantity"></ion-input>
+      <ion-input type="number" placeholder="Quantity" formControlName="quantity" #Quantity></ion-input>
       <div class="error" *ngIf="quantity?.invalid && quantity?.touched">
         <small>Enter quantity of item</small>
       </div>
     </div>
     <div class="submit">
-      <button>Add Item</button>
+      <button (click)="addItem()">Add Item</button>
     </div>
   </div>
 </form>
