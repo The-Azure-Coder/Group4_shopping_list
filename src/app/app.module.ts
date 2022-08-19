@@ -11,6 +11,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddItemsComponent } from './components/add-items/add-items.component';
 import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
