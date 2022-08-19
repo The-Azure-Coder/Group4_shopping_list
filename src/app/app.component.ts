@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
+import { AddItemsComponent } from './components/add-items/add-items.component';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,17 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private menu: MenuController) {}
+  constructor(private menu: MenuController,private modalCtrl: ModalController) {}
 
   close() {
     this.menu.close('first');
+  }
+
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: AddItemsComponent,
+    });
+    modal.present();
+    const { data, role } = await modal.onWillDismiss();
   }
 }

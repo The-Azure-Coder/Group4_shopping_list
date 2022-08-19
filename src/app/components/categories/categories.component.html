@@ -1,11 +1,20 @@
-<!-- <div *ngFor="let category of categories" class="categories">
-  <div class="cat-nm">
-    <h1>
-      {{category.category_name}}
-    </h1>
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button (click)="open()" menu="first"></ion-menu-button>
+  </ion-buttons>
+  <ion-title>Categories</ion-title>
+</ion-toolbar>
+
+<ion-content>
+  <div *ngFor="let category of categories" class="categories">
+    <div class="cat-nm">
+      <h1>
+        {{category.category_name}}
+      </h1>
+    </div>
+    <div class="action-btn">
+      <ion-icon class="edit-btn" name="create-outline"></ion-icon>
+      <ion-icon class="delete-btn" name="trash-outline"></ion-icon>
+    </div>
   </div>
-  <div class="action-btn">
-    <ion-icon class="edit-btn" name="create-outline"></ion-icon>
-    <ion-icon class="delete-btn" name="trash-outline"></ion-icon>
-  </div>
-</div> -->
+</ion-content>

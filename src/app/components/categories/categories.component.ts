@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/service/category.service';
+import { MenuController } from '@ionic/angular';
 import { Category } from 'src/app/models/categoryModel';
 
 @Component({
@@ -8,6 +9,11 @@ import { Category } from 'src/app/models/categoryModel';
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent implements OnInit {
+
+  open(){
+    this.menu.enable(true, "first")
+    this.menu.open("first")  
+  }
   categories: Category[] = [];
   getAllCategories(){
     this.categoryService.getItems().subscribe(results=>{
@@ -16,7 +22,7 @@ export class CategoriesComponent implements OnInit {
 
   }
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService,private menu: MenuController) { }
 
   ngOnInit() {
     this.getAllCategories()
