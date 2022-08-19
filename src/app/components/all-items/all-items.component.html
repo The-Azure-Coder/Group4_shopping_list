@@ -1,0 +1,34 @@
+<ion-fab vertical="top" horizontal="end" slot="fixed">
+  <ion-fab-button>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<div class="board">
+  <table width="100%">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Milk</td>
+        <td>4</td>
+        <td>500</td>
+        <td>
+          <ion-icon class="edit-btn" name="create-outline"></ion-icon>
+          <!-- <img routerLink="/shopping_list/{{item._id}}" src="/assets/images/pencil (2).png" alt="">
+          <img (click)="deleteItem(item._id)" src="/assets/images/trash.png" alt=""> -->
+          <ion-icon class="delete-btn" name="trash-outline"></ion-icon>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <button [routerLink]="['/categories']" class="cat-btn">View Categories</button> -->
+</div>

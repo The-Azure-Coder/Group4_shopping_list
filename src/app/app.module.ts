@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { AllItemsComponent } from './components/all-items/all-items.component';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -10,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
+  declarations: [AppComponent,AllItemsComponent],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   declarations: [AppComponent],
   imports: [
     BrowserModule,
