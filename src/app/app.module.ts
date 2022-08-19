@@ -11,9 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent,AllItemsComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  declarations: [AppComponent],
+  declarations: [AppComponent, AllItemsComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
