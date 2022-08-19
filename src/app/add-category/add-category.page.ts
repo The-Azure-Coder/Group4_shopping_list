@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../service/category.service';
+import { Category } from '../models/categoryModel';
 
 @Component({
   selector: 'app-add-category',
@@ -11,11 +12,15 @@ export class AddCategoryPage implements OnInit {
   constructor( private category : CategoryService) { }
 
   //should be changed when model is created for it
-  categories:any = []
+  categories:Category[] = []
+
+  inputValue:string = ''
 
   ngOnInit() {
     this.category.getItems().subscribe((result)=>{
-        this.categories = result
+       this.categories = result.data
+       console.log(this.categories)
+       console.log(this.inputValue)
     })
   }
 
@@ -25,12 +30,20 @@ export class AddCategoryPage implements OnInit {
 
   }
 
-  deleteCategory(id:any){
-    // let item = this.categories.filter((category)=>{
-    //   return category !== id
-    // })
+  addCategory(input:any){
+  const _input: Category = {category_name: input};    
 
-    console.log(id)
+    this.category.createItem(_input).subscribe(()=>{
+      console.log(_input)
+    })
+  }
+
+  deleteCategory(id:any){
+    let item = this.categories.filter((category)=>{
+      return category != id
+    })
+
+    console.log(item)
   }
 }
  

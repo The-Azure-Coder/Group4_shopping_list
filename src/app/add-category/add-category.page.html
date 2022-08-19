@@ -1,13 +1,13 @@
-<ion-content padding>  
+<ion-content>  
   <ion-item>
 
     <!-- input field to add new item -->
-    <ion-input type="text" placeholder="Add Category"></ion-input>
+    <ion-input type="text" placeholder="Add Category" [(ngModel)]="inputValue"></ion-input>
     
     <!-- icon for adding new item -->
     <div class="item-note">
-      <button ion-button style="background-color: transparent ;">
-        <ion-icon name="add" style="color: blue; font-size:40px"></ion-icon>
+      <button ion-button style="background-color: transparent ;"(click)="addCategory(inputValue)">
+        <ion-icon name="add" style="color: blue; font-size:40px; cursor: pointer;"></ion-icon>
     </button>
     </div>
 
@@ -17,7 +17,7 @@
   
   <!-- grabbing items that are listed in the array -->
     <ion-item *ngFor="let todo of categories; let i = index">
-      <p>{{todo}}</p>
+      <p>{{todo.category_name}}</p>
 
       <div class="item-note" slot="end">
         

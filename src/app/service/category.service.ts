@@ -11,7 +11,7 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   /**
-   *  http://localhost:3000/category/
+   *  http://localhost:3000/category
    */
   private apiUrl = environment.apiUrl + '/category/';
 
@@ -19,7 +19,8 @@ export class CategoryService {
     return this.http.get<ApiResponse>(this.apiUrl);
   }
 
-  createItem(category: Category) {
+  createItem(category:Category) {
+    
     return this.http.post<ApiResponse>(this.apiUrl, category);
   }
 
