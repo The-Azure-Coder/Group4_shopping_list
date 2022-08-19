@@ -1,0 +1,40 @@
+<ion-content padding>  
+  <ion-item>
+
+    <!-- input field to add new item -->
+    <ion-input type="text" placeholder="Add Category"></ion-input>
+    
+    <!-- icon for adding new item -->
+    <div class="item-note" item-end>
+      <button ion-button><ion-icon name="add" class="add"></ion-icon></button>
+    </div>
+
+  </ion-item>  
+
+  <div>
+  
+  <!-- grabbing items that are listed in the array -->
+    <ion-item *ngFor="let todo of categories; let i = index">
+      <p>{{todo}}</p>
+
+      <div class="item-note" item-end>
+        
+        <!-- update button -->
+          <button ion-button clear (click)="updateCategory()">
+            <ion-icon name="create" class="edit"></ion-icon>
+          </button>
+        
+        <!-- delete button -->
+          <button ion-button clear (click)="deleteCategory()">
+            <ion-icon name="trash" class="trash"></ion-icon>
+          </button>
+      </div>
+
+    </ion-item>
+
+  </div>
+
+</ion-content>
+
+
+
