@@ -71,11 +71,13 @@ exports.deleteItemsById = async (req, res) => {
  * ### Description
  * Getting items By Category
  */
-exports.getItemsByCategory = async(req, res) => {
+exports.getItemsByCategory = async (req, res) => {
   try {
-    const item = await Items.find({categoryID: req.params.id}).populate('categoryID')
-    JSONResponse.success(res, "Success", item, 200)
+    const item = await Items.find({ categoryID: req.params.id }).populate(
+      "categoryID"
+    );
+    JSONResponse.success(res, "Success", item, 200);
   } catch (error) {
-    JSONResponse.error(res, "Failure handling item model", error, 500)
+    JSONResponse.error(res, "Failure handling item model", error, 500);
   }
-}
+};
