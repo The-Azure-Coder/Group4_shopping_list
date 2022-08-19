@@ -7,8 +7,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
   styleUrls: ['./add-items.component.scss'],
 })
 export class AddItemsComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
 
@@ -16,23 +15,22 @@ export class AddItemsComponent implements OnInit {
     name: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
-    quantity: new FormControl('', Validators.required)
-  })
+    quantity: new FormControl('', Validators.required),
+  });
 
-  get name(){
-    return this.itemForm.get('name')
+  get name() {
+    return this.itemForm.get('name');
   }
 
-  get category(){
-    return this.itemForm.get('category')
+  get category() {
+    return this.itemForm.get('category');
   }
 
-  get price(){
-    return this.itemForm.get('price')
+  get price() {
+    return this.itemForm.get('price');
   }
 
-  get quantity(){
-    return this.itemForm.get('quantity')
+  get quantity() {
+    return this.itemForm.get('quantity');
   }
-
 }

@@ -9,13 +9,21 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddItemsComponent } from './components/add-items/add-items.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [AppComponent, AllItemsComponent, AddItemsComponent, CategoriesComponent],
+  declarations: [
+    AppComponent,
+    AllItemsComponent,
+    AddItemsComponent,
+    CategoriesComponent,
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

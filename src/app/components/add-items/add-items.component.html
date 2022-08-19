@@ -1,7 +1,9 @@
-<form action="" [formGroup]="itemForm">
+<!--  -->
+
+<form [formGroup]="itemForm">
   <div class="wrapper">
     <div class="name">
-      <input type="text" placeholder="Item Name" formControlName="name">
+      <input type="text" placeholder="Item Name" formControlName="name" />
       <div class="error" *ngIf="name?.invalid && name?.touched">
         <small>Enter name of item</small>
       </div>
@@ -18,13 +20,13 @@
       </div>
     </div>
     <div class="price">
-      <input type="number" placeholder="Cost" formControlName="price">
+      <input type="number" placeholder="Cost" formControlName="price" />
       <div class="error" *ngIf="price?.invalid && price?.touched">
         <small>Enter price of item</small>
       </div>
     </div>
     <div class="quantity">
-      <input type="number" placeholder="Quantity" formControlName="quantity">
+      <input type="number" placeholder="Quantity" formControlName="quantity" />
       <div class="error" *ngIf="quantity?.invalid && quantity?.touched">
         <small>Enter quantity of item</small>
       </div>
