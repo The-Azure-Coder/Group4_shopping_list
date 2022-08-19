@@ -1,7 +1,7 @@
 class IndexController {
   static index = (req, res) => {
     res.json({
-      name: "Shopping List",
+      name: "Ionic Shopping List",
       version: "v0.1.0",
     });
   };

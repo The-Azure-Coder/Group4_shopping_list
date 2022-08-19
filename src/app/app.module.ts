@@ -10,13 +10,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { CategoriesComponent } from './components/categories/categories.component';
 
 
+
 @NgModule({
   declarations: [AppComponent, AllItemsComponent,CategoriesComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-
+    ReactiveFormsModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
