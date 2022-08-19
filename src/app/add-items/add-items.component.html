@@ -1,0 +1,39 @@
+<form action="" [formGroup]="itemForm">
+  <h3>Add Items</h3>
+  <div class="wrapper">
+    <div class="itemName">
+      <input type="text" placeholder="Item Name" formControlName="name">
+      <div class="error" *ngIf="name?.invalid && name?.touched">
+        <small>Enter name of item</small>
+      </div>
+    </div>
+    <div class="category">
+      <select formControlName="category">
+        <option disabled></option>
+        <option value="">--Category--</option>
+        <option value="fruit">Fruit</option>
+        <option value="protein">Protein</option>
+        <option value="staple">Staple</option>
+        <option value="vegetable">Vegetable</option>
+      </select>
+      <div class="error" *ngIf="category.value == 'category' || category.value == '' && category?.touched">
+        <small>Select a category</small>
+      </div>
+    </div>
+    <div class="price">
+      <input type="number" placeholder="Cost" formControlName="price">
+      <div class="error" *ngIf="price?.invalid && price?.touched">
+        <small>Enter price of item</small>
+      </div>
+    </div>
+    <div class="quantity">
+      <input type="number" placeholder="Quantity" formControlName="quantity">
+      <div class="error" *ngIf="quantity?.invalid && quantity?.touched">
+        <small>Enter number of item</small>
+      </div>
+    </div>
+    <div class="submit">
+      <ion-button>Add Item</ion-button>
+    </div>
+  </div>
+</form>
