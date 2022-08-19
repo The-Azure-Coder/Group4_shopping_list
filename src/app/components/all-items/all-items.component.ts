@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-all-items',
@@ -6,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-items.component.scss'],
 })
 export class AllItemsComponent implements OnInit {
-  constructor() {}
+  constructor(private menu: MenuController) {}
+  open(){
+    this.menu.enable(true, "first")
+    this.menu.open("first")  
+  }
 
   ngOnInit() {}
+
 }
