@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { ShoppingListService } from 'src/app/service/shopping-list.service';
+import { Category } from 'src/app/models/categoryModel';
+import { CategoryService } from 'src/app/service/category.service';
 
 @Component({
   selector: 'app-add-items',
@@ -7,23 +10,31 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
   styleUrls: ['./add-items.component.scss'],
 })
 export class AddItemsComponent implements OnInit {
-  constructor() {}
+
+  @ViewChild('message') message!: ElementRef
+  categories!: Category[];
+
+  constructor(private itemService:ShoppingListService,private categoryService:CategoryService) {}
 
   ngOnInit() {}
 
-  itemForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required),
-    price: new FormControl('', Validators.required),
-    quantity: new FormControl('', Validators.required),
-  });
-
-  get name() {
-    return this.itemForm.get('name');
+  getAllCategories(){
+    this.categoryService.getItems().subscribe(allCategories => this.categories = allCategories[0])
   }
 
-  get category() {
-    return this.itemForm.get('category');
+  itemForm = new FormGroup({
+    item_name: new FormControl('', Validators.required),
+    categoryID: new FormControl('', Validators.required),
+    price: new FormControl(0, Validators.required),
+    quantity: new FormControl(0, Validators.required),
+  });
+
+  get item_name() {
+    return this.itemForm.get('item_name');
+  }
+
+  get categoryID() {
+    return this.itemForm.get('categoryID');
   }
 
   get price() {
@@ -33,4 +44,25 @@ export class AddItemsComponent implements OnInit {
   get quantity() {
     return this.itemForm.get('quantity');
   }
+
+  addItem(){
+    const { item_name,categoryID,price,quantity} = this.itemForm.value;
+    if(this.itemForm?.invalid){
+      this.message.nativeElement.innerHTML = "Please complete form"
+      this.message.nativeElement.style.color ="red"
+      this.message.nativeElement.style.marginTop ='-10px'
+    }else{
+    this.itemService.createItem({item_name,categoryID,price,quantity}).subscribe({
+      next:()=>{
+         this.message.nativeElement.innerHTML = "Item Added"
+         this.message.nativeElement.style.color ="green"
+         this.message.nativeElement.style.marginTop ='-10px'
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
+   }
+  }
+
 }
