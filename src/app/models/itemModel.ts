@@ -1,4 +1,4 @@
-export class Item {
+export class Items {
   _id: String;
   categoryID: String;
   item_name: String;
