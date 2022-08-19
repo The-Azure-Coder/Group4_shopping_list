@@ -6,11 +6,18 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-  }
+  },
+  {
+    path: 'add-category',
+    loadChildren: () =>
+      import('../add-category/add-category.module').then(
+        (m) => m.AddCategoryPageModule
+      ),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class HomePageRoutingModule {}

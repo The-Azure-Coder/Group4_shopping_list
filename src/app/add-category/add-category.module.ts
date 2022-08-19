@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
 import { AddCategoryPageRoutingModule } from './add-category-routing.module';
-
 import { AddCategoryPage } from './add-category.page';
 
 @NgModule({
@@ -13,8 +11,8 @@ import { AddCategoryPage } from './add-category.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AddCategoryPageRoutingModule
+    AddCategoryPageRoutingModule,
   ],
-  declarations: [AddCategoryPage]
+  declarations: [AddCategoryPage],
 })
 export class AddCategoryPageModule {}
