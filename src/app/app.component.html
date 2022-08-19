@@ -15,7 +15,7 @@
       <ion-list>
         <ion-item routerLink="/items" menuToggle>Items</ion-item>
         <ion-item routerLink="/categories">Categories</ion-item>
-        <ion-item routerLink="/add-item">Add Items</ion-item>
+        <ion-item (click)="openModal()">Add Items</ion-item>
         <ion-item routerLink="/add-category">Add Categories</ion-item>
       </ion-list>
     </ion-content>
