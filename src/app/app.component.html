@@ -1,4 +1,23 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+  <ion-menu side="start" menuId="first" contentId="first" type="overlay">
+    <ion-header>
+      <ion-toolbar color="primary" class="menu">
+        <ion-title>
+          Menu
+        </ion-title>
+        <ion-icon name="close-outline" size="large" slot="end" (click)="close()"></ion-icon>
 
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item (click)="close()">Items</ion-item>
+        <ion-item (click)="close()">Categories</ion-item>
+        <ion-item (click)="close()">Add Items</ion-item>
+        <ion-item (click)="close()">Add Categories</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-router-outlet id="first"></ion-router-outlet>
+</ion-app>
