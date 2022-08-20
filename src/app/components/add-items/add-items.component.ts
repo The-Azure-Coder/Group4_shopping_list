@@ -3,6 +3,8 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ShoppingListService } from 'src/app/service/shopping-list.service';
 import { Category } from 'src/app/models/categoryModel';
 import { CategoryService } from 'src/app/service/category.service';
+import { Location } from '@angular/common';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-items',
@@ -14,12 +16,17 @@ export class AddItemsComponent implements OnInit {
   @ViewChild('message') message!: ElementRef
   categories!: Category[];
 
-  constructor(private itemService:ShoppingListService,private categoryService:CategoryService) {}
+  constructor(private itemService:ShoppingListService,private categoryService:CategoryService,private modalCtrl: ModalController) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAllCategories();
+  }
 
   getAllCategories(){
-    this.categoryService.getItems().subscribe(allCategories => this.categories = allCategories[0])
+    this.categoryService.getItems().subscribe((allCategories) => {
+      this.categories = allCategories.data
+      console.log(`Categories are: ${this.categories}`);      
+    })
   }
 
   itemForm = new FormGroup({
@@ -50,19 +57,26 @@ export class AddItemsComponent implements OnInit {
     if(this.itemForm?.invalid){
       this.message.nativeElement.innerHTML = "Please complete form"
       this.message.nativeElement.style.color ="red"
-      this.message.nativeElement.style.marginTop ='-10px'
+      this.message.nativeElement.style.marginTop ='10px'
     }else{
     this.itemService.createItem({item_name,categoryID,price,quantity}).subscribe({
       next:()=>{
          this.message.nativeElement.innerHTML = "Item Added"
          this.message.nativeElement.style.color ="green"
-         this.message.nativeElement.style.marginTop ='-10px'
+         this.message.nativeElement.style.marginTop ='10px'
+         this.itemForm.reset();
       },
       error:(err)=>{
         console.log(err);
       }
     })
    }
+  }
+  
+  async closeDialog(){
+    const modal = await this.modalCtrl.dismiss({
+      component: AddItemsComponent,
+    });
   }
 
 }

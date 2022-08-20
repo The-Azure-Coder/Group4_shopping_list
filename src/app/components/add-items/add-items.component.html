@@ -1,6 +1,9 @@
+<div class="close_button" (click)="closeDialog()">
+  <ion-icon name="close-outline"></ion-icon>
+</div>
 <form [formGroup]="itemForm">
+  <h3>Add an Item</h3>
   <div class="wrapper">
-    <h3>Add an Item</h3>
     <div #message></div>
     <div class="name">
       <ion-input type="text" placeholder="Item Name" formControlName="item_name" #Name></ion-input>
@@ -9,11 +12,9 @@
       </div>
     </div>
     <div class="category">
-      <ion-select  formControlName="categoryID" placeholder="Select Category" #Category>
+      <ion-select formControlName="categoryID" placeholder="Select Category" #Category>
         <ion-select-option value="">--Category--</ion-select-option>
-        <ion-select-option value="Fruit">Fruit</ion-select-option>
-        <ion-select-option value="Staple">Staple</ion-select-option>
-        <ion-select-option value="Protein">Protein</ion-select-option>
+        <ion-select-option *ngFor="let group of categories" value="{{group._id}}">{{group.category_name}}</ion-select-option>
       </ion-select>
       <div class="error" *ngIf="categoryID.value == '' && categoryID?.touched">
         <small>Select a category</small>
@@ -32,7 +33,7 @@
       </div>
     </div>
     <div class="submit">
-      <button (click)="addItem()">Add Item</button>
+      <button (click)="addItem()">Add Item</button><br>
     </div>
   </div>
 </form>
