@@ -1,16 +1,16 @@
 export class Item {
-  _id: String;
-  categoryID: String;
-  item_name: String;
-  price: Number;
-  quantity: Number;
+  _id?: string;
+  categoryID: string;
+  item_name: string;
+  price: number;
+  quantity: number;
 
   constructor(
-    _id?: String,
-    item_name?: String,
-    categoryID?: String,
-    price?: Number,
-    quantity?: Number
+    _id?: string,
+    item_name?: string,
+    categoryID?: string,
+    price?: number,
+    quantity?: number
   ) {
     this._id = _id!;
     this.item_name = item_name!;
