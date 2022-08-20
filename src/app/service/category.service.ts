@@ -20,12 +20,12 @@ export class CategoryService {
   }
 
   createItem(category:Category) {
-    
+
     return this.http.post<ApiResponse>(this.apiUrl, category);
   }
 
   updateItem(categoryID: string, category: Category) {
-    return this.http.patch<ApiResponse>(this.apiUrl + categoryID, category);
+    return this.http.put<ApiResponse>(this.apiUrl + categoryID, category);
   }
 
   deleteItem(cateforyID: string) {

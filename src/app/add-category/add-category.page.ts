@@ -2,6 +2,7 @@ import { Component, OnInit , ViewChild, ElementRef } from '@angular/core';
 import { CategoryService } from '../service/category.service';
 import { Category } from '../models/categoryModel';
 import { MenuController } from '@ionic/angular';
+import { Item } from '../models/itemModel';
 
 @Component({
   selector: 'app-add-category',
@@ -18,7 +19,13 @@ export class AddCategoryPage implements OnInit {
 //array listing categories
   categories:Category[] = []
 
-  inputValue:string = ''
+  inputValue:string = '';
+
+  updateInfo:Category;
+
+  editAndUpdate : boolean = false;
+
+  id:string;
 
   ngOnInit() {
     //grabbing all categories from database
@@ -29,8 +36,29 @@ export class AddCategoryPage implements OnInit {
 
   
 //function to update category
-  editCategory(id:any, index:any){
+  editCategory(id:any, event:any){
 
+    this.editAndUpdate = true 
+
+    this.id = id
+
+    var contentToChange = event.target.offsetParent.children[0];
+    // contentToChange.style.border = '1px solid blue';
+    contentToChange.style.outline = 'none';
+    contentToChange.contentEditable="true";
+
+   this.updateInfo = contentToChange.textContent
+
+  }
+
+  updateCategory(id:any, event:any){
+    this.category.updateItem(id, this.updateInfo).subscribe(()=>{
+      // var contentToChange = event.target.offsetParent.children[0];
+      // contentToChange.style.border = 'none';
+      // contentToChange.style.outline = 'none';
+      // contentToChange.contentEditable="false"; 
+      console.log(this.updateInfo)
+    })
   }
 
 //function to add category

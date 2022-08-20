@@ -30,8 +30,9 @@
       <div class="item-note" slot="end">
         
         <!-- update button -->
-          <button ion-button clear (click)="editCategory(todo._id, i)" style="background-color: transparent;">
-            <ion-icon name="create-outline"  style="color: green; font-size:24px"></ion-icon>
+          <button ion-button clear  style="background-color: transparent;">
+            <ion-icon name="create-outline"  style="color: green; font-size:24px" (click)="editCategory(todo._id, $event)"></ion-icon>
+            <ion-icon name="checkmark-sharp" style="color: green; font-size:24px" *ngIf="editAndUpdate == true && todo._id == id" (click)="updateCategory(todo._id,$event)"></ion-icon>
           </button>
         
         <!-- delete button -->
