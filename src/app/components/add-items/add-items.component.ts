@@ -57,13 +57,13 @@ export class AddItemsComponent implements OnInit {
     if(this.itemForm?.invalid){
       this.message.nativeElement.innerHTML = "Please complete form"
       this.message.nativeElement.style.color ="red"
-      this.message.nativeElement.style.marginTop ='-10px'
+      this.message.nativeElement.style.marginTop ='10px'
     }else{
     this.itemService.createItem({item_name,categoryID,price,quantity}).subscribe({
       next:()=>{
          this.message.nativeElement.innerHTML = "Item Added"
          this.message.nativeElement.style.color ="green"
-         this.message.nativeElement.style.marginTop ='-10px'
+         this.message.nativeElement.style.marginTop ='10px'
          this.itemForm.reset();
       },
       error:(err)=>{
