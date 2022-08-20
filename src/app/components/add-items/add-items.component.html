@@ -1,9 +1,9 @@
+<div class="close_button" (click)="closeDialog()">
+  <ion-icon name="close-outline"></ion-icon>
+</div>
 <form [formGroup]="itemForm">
-  <div class="return_button" (click)="closeDialog()">
-    <ion-icon name="return-down-back-outline"></ion-icon> &nbsp;  <span style="color: blue;">return</span>
-  </div>
+  <h3>Add an Item</h3>
   <div class="wrapper">
-    <h3>Add an Item</h3>
     <div #message></div>
     <div class="name">
       <ion-input type="text" placeholder="Item Name" formControlName="item_name" #Name></ion-input>
