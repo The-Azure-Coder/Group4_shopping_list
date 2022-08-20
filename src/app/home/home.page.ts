@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
+import { AddItemsComponent } from '../components/add-items/add-items.component';
 
 @Component({
   selector: 'app-home',
@@ -8,14 +9,22 @@ import { MenuController } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor(private menu: MenuController) {}
+  constructor(private menu: MenuController,private modalCtrl: ModalController) {}
 
-  ngOnInit(){
-
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: AddItemsComponent,
+    });
+    modal.present();
+    const { data, role } = await modal.onWillDismiss();
   }
 
   open(){
     this.menu.enable(true, "first")
     this.menu.open("first")  
   }
+  ngOnInit(){
+
+  }
+
 }
