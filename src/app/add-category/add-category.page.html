@@ -20,35 +20,4 @@
 
   </ion-item>  
 
-  <div >
-  
-  <!-- grabbing items that are listed in the array -->
-    <ion-item *ngFor="let todo of categories; let i = index">
-      <p style="width: 80%; margin:4px; padding: 6px" #editableField>{{todo.category_name}}</p>
-      <!-- <input type="text" value="{{todo.category_name}}" style="border:none ;" disabled="false" #editableField> -->
-
-      <div class="item-note" slot="end">
-        
-        <!-- update button -->
-          <button ion-button clear  style="background-color: transparent;">
-            <ion-icon name="create-outline"  style="color: green; font-size:24px" (click)="editCategory(todo._id, $event)"></ion-icon>
-            <ion-icon name="checkmark-sharp" style="color: green; font-size:24px" *ngIf="editAndUpdate == true && todo._id == id" (click)="updateCategory(todo._id,$event)"></ion-icon>
-          </button>
-        
-        <!-- delete button -->
-          <button ion-button clear (click)="deleteCategory(todo._id)" style="background-color: transparent;">
-            <ion-icon name="trash-outline" style="color: red; font-size:24px" ></ion-icon>
-          </button>
-      </div>
-
-    </ion-item>
-
-  </div>
-
 </ion-content>
-
-
-
-
-
-

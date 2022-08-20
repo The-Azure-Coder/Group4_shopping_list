@@ -13,8 +13,31 @@
       </h1>
     </div>
     <div class="action-btn">
-      <ion-icon class="edit-btn" name="create-outline"></ion-icon>
-      <ion-icon class="delete-btn" name="trash-outline"></ion-icon>
+      <ion-icon class="edit-btn" name="create-outline" id="open-modal" expand="block" (click)="passInfo(category._id, category.category_name)"></ion-icon>
+      <ion-icon class="delete-btn" name="trash-outline" (click)="deleteCategory(category._id)"></ion-icon>
     </div>
   </div>
+
+
+<!-- edit modal -->
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Update</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input type="text" placeholder="Category" [(ngModel)]="inputValue"></ion-input>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
+

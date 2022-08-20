@@ -1,7 +1,7 @@
-import { Component, OnInit , ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit , ViewChild, ElementRef , Input } from '@angular/core';
 import { CategoryService } from '../service/category.service';
 import { Category } from '../models/categoryModel';
-import { MenuController } from '@ionic/angular';
+import { MenuController , NavController } from '@ionic/angular';
 import { Item } from '../models/itemModel';
 
 @Component({
@@ -11,7 +11,10 @@ import { Item } from '../models/itemModel';
 })
 export class AddCategoryPage implements OnInit {
 
-  constructor( private category : CategoryService, private menu:MenuController) { }
+  updatedata: Category;
+  udateId: string
+
+  constructor( private category : CategoryService, private menu:MenuController , private navCtrl:NavController) { }
 
   //variable for storing editable input field
 @ViewChild('editableField')editableField : ElementRef;
@@ -30,8 +33,9 @@ export class AddCategoryPage implements OnInit {
   ngOnInit() {
     //grabbing all categories from database
     this.category.getItems().subscribe((result)=>{
-       this.categories = result.data
+       this.categories = result.data;
     })
+
   }
 
   
@@ -68,8 +72,8 @@ export class AddCategoryPage implements OnInit {
 
     this.category.createItem(_input).subscribe(()=>{
       this.inputValue = ''
-      
     })
+    this.navCtrl.navigateRoot('categories');
   }
 
   //function to delete category
