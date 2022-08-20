@@ -52,7 +52,8 @@ export class AddCategoryPage implements OnInit {
   }
 
   updateCategory(id:any, event:any){
-    this.category.updateItem(id, this.updateInfo).subscribe(()=>{
+
+    this.category.updateItem(this.id, this.updateInfo).subscribe(()=>{
       // var contentToChange = event.target.offsetParent.children[0];
       // contentToChange.style.border = 'none';
       // contentToChange.style.outline = 'none';
