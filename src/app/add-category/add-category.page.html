@@ -1,3 +1,10 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button (click)="open()" menu="first"></ion-menu-button>
+  </ion-buttons>
+  <ion-title> Categories </ion-title>
+</ion-toolbar>
+
 <ion-content>  
   <ion-item>
 
@@ -17,17 +24,18 @@
   
   <!-- grabbing items that are listed in the array -->
     <ion-item *ngFor="let todo of categories; let i = index">
-      <p>{{todo.category_name}}</p>
+      <p style="width: 80%; margin:4px; padding: 6px" #editableField>{{todo.category_name}}</p>
+      <!-- <input type="text" value="{{todo.category_name}}" style="border:none ;" disabled="false" #editableField> -->
 
       <div class="item-note" slot="end">
         
         <!-- update button -->
-          <button ion-button clear (click)="updateCategory(i)" style="background-color: transparent;">
+          <button ion-button clear (click)="editCategory(todo._id, i)" style="background-color: transparent;">
             <ion-icon name="create-outline"  style="color: green; font-size:24px"></ion-icon>
           </button>
         
         <!-- delete button -->
-          <button ion-button clear (click)="deleteCategory(i)" style="background-color: transparent;">
+          <button ion-button clear (click)="deleteCategory(todo._id)" style="background-color: transparent;">
             <ion-icon name="trash-outline" style="color: red; font-size:24px" ></ion-icon>
           </button>
       </div>

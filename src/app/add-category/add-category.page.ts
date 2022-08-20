@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild, ElementRef } from '@angular/core';
 import { CategoryService } from '../service/category.service';
 import { Category } from '../models/categoryModel';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-category',
@@ -9,41 +10,54 @@ import { Category } from '../models/categoryModel';
 })
 export class AddCategoryPage implements OnInit {
 
-  constructor( private category : CategoryService) { }
+  constructor( private category : CategoryService, private menu:MenuController) { }
 
-  //should be changed when model is created for it
+  //variable for storing editable input field
+@ViewChild('editableField')editableField : ElementRef;
+
+//array listing categories
   categories:Category[] = []
 
   inputValue:string = ''
 
   ngOnInit() {
+    //grabbing all categories from database
     this.category.getItems().subscribe((result)=>{
        this.categories = result.data
-       console.log(this.categories)
-       console.log(this.inputValue)
     })
   }
 
   
-
-  updateCategory(id:any){
+//function to update category
+  editCategory(id:any, index:any){
 
   }
 
+//function to add category
   addCategory(input:any){
   const _input: Category = {category_name: input};    
 
     this.category.createItem(_input).subscribe(()=>{
-      console.log(_input)
+      this.inputValue = ''
+      
     })
   }
 
+  //function to delete category
   deleteCategory(id:any){
-    let item = this.categories.filter((category)=>{
-      return category != id
+  
+    this.category.deleteItem(id).subscribe(()=>{
+      this.categories = this.categories.filter((category)=>{
+        return category._id !== id
+      })
+    
     })
+  }
 
-    console.log(item)
+  //hamburger menu 
+  open(){
+    this.menu.enable(true, "first")
+    this.menu.open("first")  
   }
 }
  
