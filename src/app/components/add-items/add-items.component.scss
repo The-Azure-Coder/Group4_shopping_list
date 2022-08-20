@@ -47,6 +47,23 @@ ion-input, ion-select{
     margin-top: 5px;
 }
 
+.return_button{
+    display: flex;
+    align-items: center;
+    height: 20px;
+    cursor: default;
+}
+
+.return_button ion-icon{
+    color: blue;
+    font-size: 25px;
+}
+
+.return_button span{
+    margin-top: -5px;
+    font-size: 20px;
+}
+
 .error{
     color: red;
     font-size: 18px;
