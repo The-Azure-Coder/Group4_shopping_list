@@ -1,3 +1,4 @@
+<!-- hamburger menu -->
 <ion-toolbar>
   <ion-buttons slot="start">
     <ion-menu-button (click)="open()" menu="first"></ion-menu-button>
@@ -10,26 +11,31 @@
     *ngFor="let category of categories"
     class="categories"
     id="btn-open-modal-{{ category._id }}"
-  >
-    <div class="cat-nm">
-      <h1>
-        {{ category.category_name }}
-      </h1>
-    </div>
-    <div class="action-btn">
-      <ion-icon
+>
+
+<!-- grabbing items that are listed in the array -->
+  <ion-item >
+    <p>{{category.category_name}}</p>
+
+    <div class="item-note" slot="end">
+    <!-- update button -->
+      <button ion-button clear style="background-color: transparent;">
+        <ion-icon name="create-outline"  style="color: green; font-size:24px"
         class="edit-btn"
         name="create-outline"
         id="open-modal-{{ category._id }}"
         expand="block"
         (click)="passInfo(category._id, category.category_name)"
-      ></ion-icon>
-      <ion-icon
-        class="delete-btn"
-        name="trash-outline"
-        (click)="deleteCategory(category._id)"
-      ></ion-icon>
+        ></ion-icon>
+      </button>
+                
+      <!-- delete button -->
+      <button ion-button clear (click)="deleteCategory(category._id)" style="background-color: transparent;">
+        <ion-icon name="trash-outline" style="color: red; font-size:24px" ></ion-icon>
+      </button>
     </div>
+  </ion-item>
+    
 
     <!-- Edit Modal -->
     <ion-modal
