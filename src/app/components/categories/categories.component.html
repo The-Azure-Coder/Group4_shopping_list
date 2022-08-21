@@ -6,14 +6,12 @@
 </ion-toolbar>
 
 <ion-content>
-  <div
-    *ngFor="let category of categories"
-    class="categories"
-    id="btn-open-modal-{{ category._id }}"
-  >
+  <div *ngFor="let category of categories" class="categories">
     <!-- grabbing items that are listed in the array -->
     <ion-item>
-      <p>{{ category.category_name }}</p>
+      <p id="list-modal-{{ category._id }}" style="width: 100%">
+        {{ category.category_name }}
+      </p>
 
       <div class="item-note" slot="end">
         <!-- update button -->
