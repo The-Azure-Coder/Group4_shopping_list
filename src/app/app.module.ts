@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddItemsComponent } from './components/add-items/add-items.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ItemByCategoryPipe } from './item-by-category.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     AllItemsComponent,
     AddItemsComponent,
     CategoriesComponent,
+    ItemByCategoryPipe,
   ],
   imports: [
     BrowserModule,

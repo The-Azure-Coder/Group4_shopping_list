@@ -14,14 +14,28 @@ import { ApiResponse } from 'src/app/interfaces/api-response';
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent implements OnInit {
-  @ViewChildren(IonModal) modals: IonModal[];
+  constructor(
+    private categoryService: CategoryService,
+    private itemService: ShoppingListService,
+    private menu: MenuController,
+    private modalCtrl: ModalController
+  ) {}
+
+  categories: Category[] = [];
+  items: Item[] = [];
+  inputValue: string;
+  editId: string;
+  name: string;
+
+  ngOnInit() {
+    this.getAllCategories();
+    this.getAllItems();
+  }
 
   open() {
     this.menu.enable(true, 'first');
     this.menu.open('first');
   }
-  categories: Category[] = [];
-  items: Item[] = [];
 
   getAllCategories() {
     this.categoryService.getItems().subscribe((results) => {
@@ -35,21 +49,6 @@ export class CategoriesComponent implements OnInit {
       .subscribe({ next: (resp: ApiResponse) => (this.items = resp.data) });
   }
 
-  // filterArrayOfObject;
-
-  constructor(
-    private categoryService: CategoryService,
-    private itemService: ShoppingListService,
-    private menu: MenuController,
-    private modalCtrl: ModalController
-  ) {}
-
-  ngOnInit() {
-    this.getAllCategories();
-    this.getAllItems();
-  }
-
-  //function to delete category
   deleteCategory(id: any) {
     this.categoryService.deleteItem(id).subscribe(() => {
       this.categories = this.categories.filter((category) => {
@@ -57,24 +56,6 @@ export class CategoriesComponent implements OnInit {
       });
     });
   }
-
-  //modal control code
-  name: string;
-
-  cancel() {
-    this.modals.forEach((modal) => {
-      modal.dismiss(null, 'cancel');
-    });
-  }
-
-  confirm() {
-    this.modals.forEach((modal) => {
-      modal.dismiss(this.name, 'update');
-    });
-  }
-
-  inputValue: string;
-  editId: string;
 
   passInfo(id: any, data: any) {
     this.inputValue = data;

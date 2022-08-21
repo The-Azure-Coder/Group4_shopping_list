@@ -6,12 +6,8 @@
 </ion-toolbar>
 
 <ion-content>
-  <div
-    *ngFor="let category of categories"
-    class="categories"
-    id="btn-open-modal-{{ category._id }}"
-  >
-    <div class="cat-nm">
+  <div *ngFor="let category of categories" class="categories">
+    <div class="cat-nm" id="list-modal-{{ category._id }}">
       <h1>
         {{ category.category_name }}
       </h1>
@@ -24,6 +20,8 @@
         expand="block"
         (click)="passInfo(category._id, category.category_name)"
       ></ion-icon>
+    </div>
+    <div class="action-btn">
       <ion-icon
         class="delete-btn"
         name="trash-outline"
@@ -35,15 +33,21 @@
     <ion-modal
       trigger="open-modal-{{ category._id }}"
       (willDismiss)="onWillDismiss($event)"
+      #updateModal
     >
       <ng-template>
         <ion-header>
           <ion-toolbar>
             <ion-buttons slot="start">
-              <ion-button (click)="cancel()">Cancel</ion-button>
+              <ion-button (click)="updateModal.dismiss(null, 'cancel')"
+                >Cancel</ion-button
+              >
             </ion-buttons>
             <ion-buttons slot="end">
-              <ion-button (click)="confirm()" [strong]="true">
+              <ion-button
+                (click)="updateModal.dismiss(null, 'update')"
+                [strong]="true"
+              >
                 Update
               </ion-button>
             </ion-buttons>
@@ -66,7 +70,7 @@
 <ion-modal
   #modal
   *ngFor="let category of categories"
-  trigger="btn-open-modal-{{ category._id }}"
+  trigger="list-modal-{{ category._id }}"
 >
   <ng-template>
     <ion-header>
@@ -79,7 +83,12 @@
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item *ngFor="let shoppingItem of items">
+        <ion-item
+          *ngFor="
+            let shoppingItem of items
+              | itemByCategory: 'categoryID':category._id
+          "
+        >
           <ion-label>
             <h2>{{ shoppingItem["item_name"] }}</h2>
             <p>{{ shoppingItem["price"] }}</p>
