@@ -1,7 +1,8 @@
-import { Component, OnInit , ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit , ViewChild, ElementRef , Input } from '@angular/core';
 import { CategoryService } from '../service/category.service';
 import { Category } from '../models/categoryModel';
-import { MenuController } from '@ionic/angular';
+import { MenuController , NavController } from '@ionic/angular';
+import { Item } from '../models/itemModel';
 
 @Component({
   selector: 'app-add-category',
@@ -10,7 +11,10 @@ import { MenuController } from '@ionic/angular';
 })
 export class AddCategoryPage implements OnInit {
 
-  constructor( private category : CategoryService, private menu:MenuController) { }
+  updatedata: Category;
+  udateId: string
+
+  constructor( private category : CategoryService, private menu:MenuController , private navCtrl:NavController) { }
 
   //variable for storing editable input field
 @ViewChild('editableField')editableField : ElementRef;
@@ -18,19 +22,48 @@ export class AddCategoryPage implements OnInit {
 //array listing categories
   categories:Category[] = []
 
-  inputValue:string = ''
+  inputValue:string = '';
+
+  updateInfo:Category;
+
+  editAndUpdate : boolean = false;
+
+  id:string;
 
   ngOnInit() {
     //grabbing all categories from database
     this.category.getItems().subscribe((result)=>{
-       this.categories = result.data
+       this.categories = result.data;
     })
+
   }
 
   
 //function to update category
-  editCategory(id:any, index:any){
+  editCategory(id:any, event:any){
 
+    this.editAndUpdate = true 
+
+    this.id = id
+
+    var contentToChange = event.target.offsetParent.children[0];
+    // contentToChange.style.border = '1px solid blue';
+    contentToChange.style.outline = 'none';
+    contentToChange.contentEditable="true";
+
+   this.updateInfo = contentToChange.textContent
+
+  }
+
+  updateCategory(id:any, event:any){
+
+    this.category.updateItem(this.id, this.updateInfo).subscribe(()=>{
+      // var contentToChange = event.target.offsetParent.children[0];
+      // contentToChange.style.border = 'none';
+      // contentToChange.style.outline = 'none';
+      // contentToChange.contentEditable="false"; 
+      console.log(this.updateInfo)
+    })
   }
 
 //function to add category
@@ -39,8 +72,8 @@ export class AddCategoryPage implements OnInit {
 
     this.category.createItem(_input).subscribe(()=>{
       this.inputValue = ''
-      
     })
+    this.navCtrl.navigateRoot('categories');
   }
 
   //function to delete category
