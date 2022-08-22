@@ -13,7 +13,6 @@ import { ShoppingListService } from 'src/app/service/shopping-list.service';
 export class AllItemsComponent implements OnInit {
   items: any[] | Item[]=[]
 
-  
 
 inputName: string;
 inputPrice: number;
