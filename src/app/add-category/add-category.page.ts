@@ -14,7 +14,10 @@ export class AddCategoryPage implements OnInit {
   updatedata: Category;
   udateId: string
 
-  constructor( private category : CategoryService, private menu:MenuController , private navCtrl:NavController) { }
+  constructor( 
+    private category : CategoryService, 
+    private menu:MenuController , 
+    private navCtrl:NavController) { }
 
   //variable for storing editable input field
 @ViewChild('editableField')editableField : ElementRef;
