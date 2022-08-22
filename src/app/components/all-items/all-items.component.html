@@ -6,29 +6,46 @@
 </ion-toolbar>
 
 <ion-content>
-  <div class="board">
-    <table width="100%">
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Milk</td>
-          <td>4 </td>
-          <td>500</td>
-          <td>
-            <ion-icon class="edit-btn" name="create-outline"></ion-icon>
-            <ion-icon class="delete-btn" name="trash-outline"></ion-icon>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+
+  <ion-accordion-group>
+    <ion-accordion *ngFor="let shoppingItem of items">
+      <ion-item slot="header">
+        <ion-label>
+          <h1>
+            {{ shoppingItem["item_name"] }}
+          </h1>
+        </ion-label>
+
+        <ion-label>
+          <p>
+            {{ shoppingItem["categoryID"].category_name}}
+          </p>
+        </ion-label>
+        <ion-label>
+          <p>
+            {{ shoppingItem["price"] }}
+          </p>
+        </ion-label>
+        <ion-label>
+          <p>
+            {{ shoppingItem["quantity"] |currency }}
+          </p>
+        </ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-label>
+          <h1>
+            {{ shoppingItem["item_name"] }}
+          </h1>
+        </ion-label>
+        <div class="action-btn">
+          <ion-icon name="create-outline" style="color: green; font-size: 24px" class="edit-btn" name="create-outline"></ion-icon>
+          <ion-icon name="trash-outline" style="color: red; font-size: 24px"></ion-icon>
+        </div>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
   <ion-fab vertical="center" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="add" (click)="openModal()"></ion-icon>

@@ -7,10 +7,10 @@ const Items = require("../models/items.model");
  */
 exports.getAllItems = async (req, res) => {
   try {
-    const items = await Items.find();
+    const items = await Items.find().populate("categoryID");
     JSONResponse.success(res, "Success.", items, 200);
   } catch (error) {
-    JSONResponse.error(res, "Failure handling item model.", error, 500);
+    JSONResponse.error(res, "Failure handling  model.", error, 500);
   }
 };
 
