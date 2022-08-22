@@ -16,51 +16,26 @@
       <div class="item-note" slot="end">
         <!-- update button -->
         <button ion-button clear style="background-color: transparent">
-          <ion-icon
-            name="create-outline"
-            style="color: green; font-size: 24px"
-            class="edit-btn"
-            name="create-outline"
-            id="open-modal-{{ category._id }}"
-            expand="block"
-            (click)="passInfo(category._id, category.category_name)"
-          ></ion-icon>
+          <ion-icon name="create-outline" style="color: green; font-size: 24px" class="edit-btn" name="create-outline" id="open-modal-{{ category._id }}" expand="block" (click)="passInfo(category._id, category.category_name)"></ion-icon>
         </button>
 
         <!-- delete button -->
-        <button
-          ion-button
-          clear
-          (click)="deleteCategory(category._id)"
-          style="background-color: transparent"
-        >
-          <ion-icon
-            name="trash-outline"
-            style="color: red; font-size: 24px"
-          ></ion-icon>
+        <button ion-button clear (click)="deleteCategory(category._id)" style="background-color: transparent">
+          <ion-icon name="trash-outline" style="color: red; font-size: 24px"></ion-icon>
         </button>
       </div>
     </ion-item>
 
     <!-- Edit Modal -->
-    <ion-modal
-      trigger="open-modal-{{ category._id }}"
-      (willDismiss)="onWillDismiss($event)"
-      #updateModal
-    >
+    <ion-modal trigger="open-modal-{{ category._id }}" (willDismiss)="onWillDismiss($event)" #updateModal>
       <ng-template>
         <ion-header>
           <ion-toolbar>
             <ion-buttons slot="start">
-              <ion-button (click)="updateModal.dismiss(null, 'cancel')"
-                >Cancel</ion-button
-              >
+              <ion-button (click)="updateModal.dismiss(null, 'cancel')">Cancel</ion-button>
             </ion-buttons>
             <ion-buttons slot="end">
-              <ion-button
-                (click)="updateModal.dismiss(null, 'update')"
-                [strong]="true"
-              >
+              <ion-button (click)="updateModal.dismiss(null, 'update')" [strong]="true">
                 Update
               </ion-button>
             </ion-buttons>
@@ -68,11 +43,7 @@
         </ion-header>
         <ion-content class="ion-padding">
           <ion-item>
-            <ion-input
-              type="text"
-              placeholder="Category"
-              [(ngModel)]="inputValue"
-            ></ion-input>
+            <ion-input type="text" placeholder="Category" [(ngModel)]="inputValue"></ion-input>
           </ion-item>
         </ion-content>
       </ng-template>
@@ -80,22 +51,20 @@
   </div>
 </ion-content>
 
-<ion-modal
-  #modal
-  *ngFor="let category of categories"
-  trigger="list-modal-{{ category._id }}"
->
+<ion-modal #modal *ngFor="let category of categories" trigger="list-modal-{{ category._id }}">
   <ng-template>
     <ion-header>
       <ion-toolbar>
-        <ion-title>{{ category.category_name }}</ion-title>
+        <ion-title>
+          {{ category.category_name }}
+        </ion-title>
         <ion-buttons slot="end">
           <ion-button (click)="modal.dismiss()">Close</ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-list>
+      <!-- <ion-list>
         <ion-item
           *ngFor="
             let shoppingItem of items
@@ -108,7 +77,40 @@
             <p>{{ shoppingItem["quantity"] }}</p>
           </ion-label>
         </ion-item>
-      </ion-list>
+      </ion-list> -->
+
+      <ion-accordion-group #accordionGroup>
+        <ion-accordion *ngFor="let shoppingItem of items">
+          <ion-item slot="header">
+            <ion-label>
+              <h1>
+                {{ shoppingItem["item_name"] }}
+              </h1>
+            </ion-label>
+            <ion-label>
+              <p>
+                {{ shoppingItem["price"] }}
+              </p>
+            </ion-label>
+            <ion-label>
+              <p>
+                {{ shoppingItem["quantity"] |currency }}
+              </p>
+            </ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-label>
+              <h1>
+                {{ shoppingItem["item_name"] }}
+              </h1>
+            </ion-label>
+            <div class="action-btn">
+              <ion-icon name="create-outline" style="color: green; font-size: 24px" class="edit-btn" name="create-outline"></ion-icon>
+              <ion-icon name="trash-outline" style="color: red; font-size: 24px"></ion-icon>
+            </div>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
     </ion-content>
   </ng-template>
 </ion-modal>
