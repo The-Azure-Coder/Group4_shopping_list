@@ -13,7 +13,7 @@ import { ShoppingListService } from 'src/app/service/shopping-list.service';
 export class AllItemsComponent implements OnInit {
   items: any[] | Item[]=[]
 
-  constructor(private menu: MenuController, private modalCtrl: ModalController,private shopService: ShoppingListService) {}
+  
 
 inputName: string;
 inputPrice: number;

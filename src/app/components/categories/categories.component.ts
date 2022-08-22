@@ -27,6 +27,11 @@ export class CategoriesComponent implements OnInit {
   editId: string;
   name: string;
 
+  itemName: string;
+  itemPrice : number;
+  itemQuantity : number;
+  itemCategory : string
+
   ngOnInit() {
     this.getAllCategories();
     this.getAllItems();
@@ -57,6 +62,16 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
+  deleteItem(id: any) {
+    this.itemService.deleteItem(id).subscribe(() => {
+      this.items = this.items.filter((item) => {
+        return item._id !== id;
+      });
+    });
+  }
+
+
+
   passInfo(id: any, data: any) {
     this.inputValue = data;
     this.editId = id;
@@ -69,6 +84,31 @@ export class CategoriesComponent implements OnInit {
         .updateItem(this.editId, { category_name: this.inputValue })
         .subscribe(() => {
           this.getAllCategories();
+        });
+    }
+  }
+
+  passItem(id: any, data: Item) {
+    this.itemName = data.item_name;
+    this.itemPrice = data.price;
+    this.itemQuantity = data.quantity;
+    this.itemCategory = data.categoryID
+    this.editId = data._id
+  }
+
+  updatedList(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'update') {
+      this.itemService
+        .updateItem(this.editId, {
+          _id: this.editId,
+          categoryID: this.itemCategory,
+          item_name: this.itemName,
+          price: this.itemPrice,
+          quantity: this.itemQuantity
+          })
+        .subscribe(() => {
+          this.getAllItems()
         });
     }
   }

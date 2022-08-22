@@ -38,7 +38,7 @@
           </h1>
         </ion-label>
         <div class="action-btn">
-         <ion-icon class="edit-btn" name="create-outline" id="open-modal-{{ shoppingItem._id }}" expand="block" (click)="passInfo(item)"></ion-icon>
+         <ion-icon class="edit-btn" name="create-outline" id="open-modal-{{ shoppingItem._id }}" expand="block" (click)="passInfo(shoppingItem)"></ion-icon>
           <ion-icon class="delete-btn" name="trash-outline" (click)="deleteItem(shoppingItem._id)"></ion-icon>
         </div>
       </div>
