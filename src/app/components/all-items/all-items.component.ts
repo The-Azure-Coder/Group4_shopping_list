@@ -11,8 +11,10 @@ import { ShoppingListService } from 'src/app/service/shopping-list.service';
   styleUrls: ['./all-items.component.scss'],
 })
 export class AllItemsComponent implements OnInit {
+  items: any[] | Item[]=[]
 
-items:Item[]=[]
+  constructor(private menu: MenuController, private modalCtrl: ModalController,private shopService: ShoppingListService) {}
+
 inputName: string;
 inputPrice: number;
 inputQuantity: number
@@ -29,6 +31,13 @@ categoryId : string
     this.menu.enable(true, "first")
     this.menu.open("first")  
   }
+  
+    getAllItems():void{
+    this.shoppingList.getItems().subscribe((result)=>{
+      this.items = result.data
+    })
+  }
+
 
   
   async openModal() {
@@ -45,11 +54,7 @@ categoryId : string
       this.getAllItems()
   }
 
-  getAllItems():void{
-    this.shoppingList.getItems().subscribe((result)=>{
-      this.items = result.data
-    })
-  }
+
 
   
   deleteItem(id:any) {

@@ -6,29 +6,45 @@
 </ion-toolbar>
 
 <ion-content>
-  <div class="board">
-    <table width="100%">
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let item of items">
-        <tr>
-          <td>{{item.item_name}}</td>
-          <td>{{item.quantity}}</td>
-          <td>{{item.price}}</td>
-          <td>
-            <ion-icon class="edit-btn" name="create-outline" id="open-modal-{{ item._id }}" expand="block" (click)="passInfo(item)"></ion-icon>
-            <ion-icon class="delete-btn" name="trash-outline" (click)="deleteItem(item._id)"></ion-icon>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <ion-accordion-group>
+    <ion-accordion *ngFor="let shoppingItem of items">
+      <ion-item slot="header">
+        <ion-label>
+          <h1>
+            {{ shoppingItem["item_name"] }}
+          </h1>
+        </ion-label>
+
+        <ion-label>
+          <p>
+            {{ shoppingItem["categoryID"].category_name}}
+          </p>
+        </ion-label>
+        <ion-label>
+          <p>
+            {{ shoppingItem["price"] }}
+          </p>
+        </ion-label>
+        <ion-label>
+          <p>
+            {{ shoppingItem["quantity"] |currency }}
+          </p>
+        </ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-label>
+          <h1>
+            {{ shoppingItem["item_name"] }}
+          </h1>
+        </ion-label>
+        <div class="action-btn">
+         <ion-icon class="edit-btn" name="create-outline" id="open-modal-{{ shoppingItem._id }}" expand="block" (click)="passInfo(item)"></ion-icon>
+          <ion-icon class="delete-btn" name="trash-outline" (click)="deleteItem(shoppingItem._id)"></ion-icon>
+        </div>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
   <ion-fab vertical="center" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="add" (click)="openModal()"></ion-icon>

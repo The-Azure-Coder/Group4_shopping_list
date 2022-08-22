@@ -8,7 +8,7 @@ export class Item {
   constructor(
     _id?: string,
     item_name?: string,
-    categoryID?: string,
+    categoryID?:string,
     price?: number,
     quantity?: number
   ) {

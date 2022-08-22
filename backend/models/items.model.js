@@ -6,7 +6,7 @@ let itemsSchema = new Schema(
     categoryID: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: "category",
+      ref: "categories",
     },
     item_name: { type: String, required: true },
     price: { type: Number, required: true },
