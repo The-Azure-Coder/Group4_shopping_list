@@ -24,7 +24,7 @@ export class ShoppingListService {
   }
 
   updateItem(shoppingItemID: string, shoppingItem: Item) {
-    return this.http.patch<ApiResponse>(
+    return this.http.put<ApiResponse>(
       this.apiUrl + shoppingItemID,
       shoppingItem
     );
