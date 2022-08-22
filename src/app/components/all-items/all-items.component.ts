@@ -4,7 +4,6 @@ import { AddItemsComponent } from '../add-items/add-items.component';
 import { Item } from 'src/app/models/itemModel';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { ShoppingListService } from 'src/app/service/shopping-list.service';
-import { type } from 'os';
 
 @Component({
   selector: 'app-all-items',
@@ -18,7 +17,8 @@ inputName: string;
 inputPrice: number;
 inputQuantity: number
 editId: string;
-id : string
+id : string;
+categoryId : string
 
   constructor(private menu: MenuController, 
     private modalCtrl: ModalController, 
@@ -65,6 +65,7 @@ id : string
     this.inputPrice = data.price
     this.inputQuantity = data.quantity
     this.id = data._id
+    this.categoryId = data.categoryID
   }
 
   onWillDismiss(event: Event) {
@@ -72,7 +73,8 @@ id : string
     if (ev.detail.role === 'update') {
       this.shoppingList
         .updateItem(this.id, {
-          categoryID: '',
+          _id : this.id ,
+          categoryID: this.categoryId,
           item_name: this.inputName,
           price: this.inputPrice,
           quantity: this.inputQuantity
